@@ -1,0 +1,106 @@
+#include <iostream>
+using namespace std;
+
+// declare class  
+class Complex 
+{
+
+// declare variable
+    private:
+        int real,imag;
+
+// constructor (add default value and write initial letter of the variable)
+    public:
+    Complex(int r = 0, int i = 0)
+    {
+        real = r,imag =i;
+        
+    }
+
+// friend of << , >> operator 
+    friend ostream & operator << (ostream &out,Complex const &obj);
+    friend istream & operator >> (istream &in,Complex &obj);
+
+// Complex addition
+    Complex operator + (Complex const &obj)
+    {
+        Complex res;
+        res.real = real+obj.real;
+        res.imag = imag+obj.imag;
+        return res;
+    }
+
+// Complex multiplication
+        Complex operator * (Complex const &obj)
+        {
+            Complex res;
+            res.real = real*obj.real-imag*obj.imag;
+            res.imag = real*obj.imag+imag*obj.real;
+            return res;
+        }   
+};
+
+// << insertion 
+ostream & operator << (ostream &out, Complex const &obj)
+    {
+        out << obj.real;
+        out << "+i" << obj.imag;
+        return out;
+    }
+
+// >> exertion
+istream & operator >> (istream &in, Complex &obj)
+    {
+        cout <<"\nEnter Real part"<<endl;
+        in >> obj.real;
+        cout << "\nEnter Imag part"<<endl;
+        in >> obj.imag;
+        return in;
+    }
+
+      
+int main()
+{
+    //declare numbers
+        Complex c1,c2,c3,c4;
+
+        cout << "\nEnter First number: "; 
+        cin >> c1;
+        cout << "\nEnter Second number: "; 
+        cin >> c2;
+
+    // Addition calling
+        c3 = c1+c2;
+
+        cout << "\n The Addition is: ";
+        cout<<c3;
+
+    // Multiplication calling
+        c4 = c1*c2;
+
+        cout <<"\nThe Multiplication is: ";
+        cout<<c4;
+
+       return 0;                
+}
+
+
+
+output:
+
+Enter First number:
+Enter Real part
+2
+
+Enter Imag part
+3
+
+Enter Second number:
+Enter Real part
+4
+
+Enter Imag part
+5
+
+ The Addition is: 6+i8
+The Multiplication is: -7+i22

@@ -1,0 +1,118 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+// declare class
+class student
+{
+    // Declare Variables 
+    private:
+             string name,DoB,blood_grp,addr,year_class,mob;
+            int div;
+            int *rollno;
+
+    public:
+            //friend class   
+            friend class faculty;
+
+// Default  Constructor
+student()
+{
+        rollno = new int;
+
+        *rollno = div = -1;
+        name = blood_grp = DoB = addr =year_class = mob = "";
+}
+// Destructor
+ ~student()
+{
+        delete rollno;
+}
+
+//Function to add information in student database 
+void add_data()
+{
+        cout <<"\nEnter Student Information: ";
+
+        cout<< "\nEnter Name: "<<endl;
+        cin.ignore();
+        getline(cin,name);
+        cout << "Enter Roll_no: ";
+            cin >> *rollno;
+        cout << "Enter year(SE/TE/BE): ";
+            cin >> year_class;
+        cout << "Enter Division (1/2/3/4/5): ";
+            cin >> div;
+        cout << "Enter DoB :";
+            cin >> DoB;
+        cout << "Enter Blood group :";
+            cin >> blood_grp;
+        cout << "Enter Mobile no: ";
+            cin >> mob;
+        cout << "Enter Address: ";
+            cin >> addr;
+}
+// Function to display Student information
+void display()
+    {
+        cout << "\n---------------------------------------------------------------";
+        cout << "\nName             :"<< name;
+        cout << "\nRoll_no          :"<< *rollno;
+        cout << "\nYear(SE/TE/BE)   :"<< year_class;
+        cout << "\nDiv(A/B/C/D/E)   :"<< div;
+        cout << "\nDoB              :"<<DoB;
+        cout << "\nBlood group      :"<< blood_grp;
+        cout << "\nMobile no        :"<< mob;
+        cout << "\nAddress          :"<< addr;
+        cout << "\n---------------------------------------------------------------";
+    }
+// Static Member Function
+static void header()
+    {
+        cout<<"\n * * * Student Information System * * * ";
+    }      
+};
+int main()
+{
+    student st[5];
+    int ch=0,count=0;
+    do
+    {
+        cout<<"\n * * * Student Information System * * *";
+        cout<<"\n * * * Menu * * *";
+        cout<<"\n 1. Add Information" ;
+        cout<<"\n 2. Display Information" ;
+        cout<<"\n 3. Exit " ;
+        cout<<"\n Enter Choice :  ";
+        cin>>ch;
+
+        switch (ch)
+        {
+            case 1:
+            {
+                // Add the info
+                st[count].add_data();
+                count++;
+                break;
+            }
+            case 2:
+            {
+                //Display Info 
+                for ( int j=0;j<count;j++)
+                {
+                    student::header();
+                    st[j].display();
+                }
+                break;
+            }
+                   
+            case 3:
+            {
+                exit(0);
+            }
+        }
+        
+    } while ( ch != 3);
+
+    return 0;
+}

@@ -1,0 +1,63 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+int main ()
+{
+
+char data[100];
+
+    //open file in Write mode
+    ofstream outfile;
+    outfile.open("f1.cpp");
+    cout<<"Writing to the file"<<endl;
+
+    // take input data (name)
+    cout<<"Enter your name : ";
+    cin.getline(data,100);
+
+    //write inputted data to the file
+    outfile << data << endl;
+
+    // again take input data (age)
+    cout<<"Enter your age : ";
+    cin>>data;
+
+    // again write inputted data to the file
+    outfile<<data<< endl;
+
+    //close the opened file
+    outfile.close();
+
+    // open a file in read mode
+    ifstream infile;
+    infile.open("f1.cpp");
+    cout<<"Read from the file"<<endl;
+    infile>>data;
+
+    // Writing the data on the screen
+    cout<<data<<endl;
+
+    
+
+    //now reading the data from the file and displaying it
+    infile>>data;
+    cout<<data<<endl;
+   cout<<"Stop!"<<endl;
+
+    //closing the file
+    infile.close();
+
+    return 0;
+}
+
+
+output:
+
+Writing to the file
+Enter your name : nupur 
+Enter your age : 18
+Read from the file
+nupur
+18
+Stop!

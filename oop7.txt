@@ -1,0 +1,53 @@
+#include<iostream>
+#include<map>
+using namespace std;
+
+int main()
+{
+// Create an empty map
+    typedef map<string, int> mapType;
+    mapType populationMap;
+	
+// insert elements in map
+    populationMap.insert(pair<string, int>("Maharashtra", 8130115	));
+    populationMap.insert(pair<string, int>("Goa", 6593314));
+    populationMap.insert(pair<string, int>("Rajhasthan", 5296098));
+    populationMap.insert(pair<string, int>("Assam", 2773435	));
+    populationMap.insert(pair<string, int>("Kerala", 1815485));
+    populationMap.insert(pair<string, int>("Gujarat", 571165));
+	
+// iterator or index for map
+    mapType::iterator iter = --populationMap.end();
+
+// display the size of the map
+    cout<<"* * * * * Population of the State in India * * * * * \n";
+    cout<<" Size of populationMap:\n " << populationMap.size() <<'n';
+
+// find and it will return an iterator to the matching element if it is found 
+//or it will go to the end of the map if the key is not found 
+	string state;
+    cout<<"\nEnter the state name to find population: "<<endl;
+	cin>>state;
+
+	iter=populationMap.find(state);
+	
+	if(iter != populationMap.end())
+		cout<<state<<"'s population is : "<<iter->second<<endl;
+	else
+		cout<<"State not found in the database!"<<endl;
+
+// clear the entries in the map using clear
+	populationMap.clear();
+
+return 0;
+}
+
+
+output:
+
+* * * * * Population of the State in India * * * * * 
+ Size of populationMap:
+ 6n
+Enter the state name to find population:
+Goa
+Goa's population is : 6593314
